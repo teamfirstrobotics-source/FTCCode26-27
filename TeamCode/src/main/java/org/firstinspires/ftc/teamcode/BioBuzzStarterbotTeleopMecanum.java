@@ -49,7 +49,7 @@ import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 
 @TeleOp(name = "Mec BioBuzz StarterBot Teleop", group = "StarterBot")
 //@Disabled
-public class BioBuzzStarterbotTeleopMecanum extends OpMode {
+public class BioBuzzStarterbotTeleop extends OpMode {
 
     // Declare OpMode members.
     private DcMotor leftFrontDrive = null;
@@ -73,8 +73,8 @@ public class BioBuzzStarterbotTeleopMecanum extends OpMode {
      * in the launch() function to only run the windmill servo when the motor is spinning fast
      * enough to make a successful throw.
      */
-    public final int LAUNCHER_TARGET_VELOCITY = 500; //2678 RPM
-    public final int LAUNCHER_MIN_VELOCITY = 400; //2571 RPM
+    public final int LAUNCHER_TARGET_VELOCITY = 310; //2678 RPM
+    public final int LAUNCHER_MIN_VELOCITY =300; //2571 RPM
 
 
     /*
