@@ -213,7 +213,7 @@ public class BioBuzzStarterbotTeleop extends OpMode {
 
         launch();
         if (gamepad1.a){
-            windmillServo.setPower(1);
+            windmillServo.setPower(-1);
         }
 
         /*
@@ -222,7 +222,7 @@ public class BioBuzzStarterbotTeleop extends OpMode {
          * power variable in each loop of our code, but inside our launch function we also sometimes
          * change the intake power. So we need to give our launch function a chance to modify the
          * variable before we write it to our motor and servos.z
-         *
+         * 
          */
 
         intake.setPower(intakePower);
