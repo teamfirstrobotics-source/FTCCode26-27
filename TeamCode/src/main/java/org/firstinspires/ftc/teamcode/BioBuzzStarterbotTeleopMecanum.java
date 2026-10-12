@@ -73,8 +73,8 @@ public class BioBuzzStarterbotTeleopMecanum extends OpMode {
      * in the launch() function to only run the windmill servo when the motor is spinning fast
      * enough to make a successful throw.
      */
-    public final int LAUNCHER_TARGET_VELOCITY = 500; //2678 RPM
-    public final int LAUNCHER_MIN_VELOCITY = 400; //2571 RPM
+    public final int LAUNCHER_TARGET_VELOCITY = 1200; //2678 RPM
+    public final int LAUNCHER_MIN_VELOCITY = 1150; //2571 RPM
 
 
     /*
@@ -195,7 +195,7 @@ public class BioBuzzStarterbotTeleopMecanum extends OpMode {
          * Note, moving the joystick forward on most gamepads results in a negative signal, so
          * we invert it before passing it to the function.
          */
-        mecanumDrive(gamepad1.left_stick_y, -gamepad1.left_stick_x, -gamepad1.right_stick_x);
+        mecanumDrive(gamepad2.left_stick_y, -gamepad2.left_stick_x, -gamepad2.right_stick_x);
 
         /*
          * Set the intake power variable to equal the right trigger, minus the left trigger.
@@ -213,7 +213,9 @@ public class BioBuzzStarterbotTeleopMecanum extends OpMode {
 
         launch();
         if (gamepad1.a){
-            windmillServo.setPower(-1);
+            windmillServo.setPower(1);
+        } else {
+            windmillServo.setPower(0);
         }
 
         /*
@@ -293,11 +295,5 @@ public class BioBuzzStarterbotTeleopMecanum extends OpMode {
          * add some power to the intake power. This can sometimes help dislodge stuck elements from
          * inside the hopper.
          */
-        if (gamepad1.right_bumper && launcher.getVelocity() > LAUNCHER_MIN_VELOCITY) {
-            windmillServo.setPower(1);
-            intakePower += 0.5;
-        } else {
-            windmillServo.setPower(0);
-        }
     }
 }
