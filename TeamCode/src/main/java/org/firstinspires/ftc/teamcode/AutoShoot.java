@@ -15,12 +15,12 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 public class AutoShoot extends LinearOpMode {
 
     // Same values as your teleop
-    final int LAUNCHER_TARGET_VELOCITY = 310;
-    final int LAUNCHER_MIN_VELOCITY    = 300;
+    final int LAUNCHER_TARGET_VELOCITY = 1250;
+    final int LAUNCHER_MIN_VELOCITY    = 1200;
 
     // Shot counting
     final int    TOTAL_SHOTS            = 3;
-    final int    SHOT_DIP_VELOCITY      = 285;  // below this = a ball just went through (tune!)
+    final int SHOT_DIP_VELOCITY        = 1150;
     final double SHOOT_TIMEOUT_SECONDS  = 8.0;  // safety: stop even if we never count 3
     final long   FINISH_DELAY_MS        = 500;  // let the last ball clear before shutting down
 
