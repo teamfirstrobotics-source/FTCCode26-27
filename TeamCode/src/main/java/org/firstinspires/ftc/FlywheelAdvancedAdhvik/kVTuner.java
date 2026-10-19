@@ -2,14 +2,17 @@ package org.firstinspires.ftc.FlywheelAdvancedAdhvik;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.CRServo;
+
 @TeleOp
 public class kVTuner extends OpMode {
 
+    CRServo windmillServo;
     FlywheelClass flywheel = new FlywheelClass();
 
     public static double kV=0;
     public double kS=.0428;
-    public double goalRPM =1200;
+    public double goalRPM =2700;
 
     double[] increments = {0.000001, 0.00001, 0.0001, 0.001, 0.01};
     int incrementIdx = 4; // Start at 0.001
@@ -21,6 +24,7 @@ public class kVTuner extends OpMode {
 
     @Override
     public void loop() {
+        windmillServo.setPower(-1);
         if (gamepad1.dpadRightWasReleased() && incrementIdx <4) {
             incrementIdx++;
         } else if (gamepad1.dpadLeftWasPressed() && incrementIdx >0) {
