@@ -31,8 +31,10 @@ public class AutoShoot extends LinearOpMode {
 
     private DcMotor leftFrontDrive, rightFrontDrive, leftBackDrive, rightBackDrive;
     private DcMotor intake;
+    private DcMotorEx launcher;
     private CRServo leftIntakeServo;
     private CRServo rightIntakeServo;
+    private CRServo windmillServo;
 
     @Override
     public void runOpMode() {
@@ -40,9 +42,9 @@ public class AutoShoot extends LinearOpMode {
         rightFrontDrive  = hardwareMap.get(DcMotor.class, "rf");
         leftBackDrive    = hardwareMap.get(DcMotor.class, "lb");
         rightBackDrive   = hardwareMap.get(DcMotor.class, "rb");
-        intake           = hardwareMap.get(DcMotor.class, "i");
-        DcMotorEx launcher = hardwareMap.get(DcMotorEx.class, "l");
-        CRServo windmillServo = hardwareMap.get(CRServo.class, "t");
+        intake = hardwareMap.get(DcMotor.class, "i");
+        launcher = hardwareMap.get(DcMotorEx.class, "l");
+        windmillServo = hardwareMap.get(CRServo.class, "t");
         leftIntakeServo  = hardwareMap.get(CRServo.class, "li");
         rightIntakeServo = hardwareMap.get(CRServo.class, "ri");
 
