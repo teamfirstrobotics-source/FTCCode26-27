@@ -73,8 +73,8 @@ public class NothingBOTRoboticsTeleopMecanum extends OpMode {
      * in the launch() function to only run the windmill servo when the motor is spinning fast
      * enough to make a successful throw.
      */
-    public final int Goal_RPM_Launcher = 1250; //2678 RPM
-    public final int Min_RPM_Launcher = 1220; //2571 RPM
+    public final int LAUNCHER_TARGET_VELOCITY = 1250; //2678 RPM
+    public final int LAUNCHER_MIN_VELOCITY = 1220; //2571 RPM
 
 
     /*
@@ -212,11 +212,6 @@ public class NothingBOTRoboticsTeleopMecanum extends OpMode {
         intakePower = gamepad1.right_trigger - gamepad1.left_trigger;
 
         launch();
-        if (gamepad1.a){
-            windmillServo.setPower(1);
-        } else {
-            windmillServo.setPower(0);
-        }
 
         /*
          * Here we set our intake motor and servos to their intake power. The order of operations
@@ -283,9 +278,16 @@ public class NothingBOTRoboticsTeleopMecanum extends OpMode {
          * Otherwise, we start spinning the launcher down.
          */
         if (gamepad1.right_bumper) {
-            launcher.setVelocity(Goal_RPM_Launcher);
+            launcher.setVelocity(LAUNCHER_TARGET_VELOCITY);
         } else {
             launcher.setVelocity(0);
+        }
+
+        // Windmill feeds while left bumper is held AND launcher is fast enough.
+        if (gamepad1.a && launcher.getVelocity() >= LAUNCHER_MIN_VELOCITY) {
+            windmillServo.setPower(1);
+        } else {
+            windmillServo.setPower(0);
         }
 
         /*
