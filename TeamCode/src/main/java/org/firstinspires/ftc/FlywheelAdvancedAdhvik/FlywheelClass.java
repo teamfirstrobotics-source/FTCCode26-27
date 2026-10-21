@@ -46,4 +46,4 @@ public class FlywheelClass {
     }
 
 }
-//Goal RPM is 120
+//Goal RPM is 1200
