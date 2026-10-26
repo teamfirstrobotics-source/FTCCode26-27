@@ -12,10 +12,8 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 
-
-
-@Autonomous(name = "Four Preload Auto W/ Intake")
-public class FourPreloadAutoShootIntake_10_19_2026 extends LinearOpMode {
+@Autonomous(name = "Four Preload Auto W/ Intake 10/23/2026")
+public class FourPreloadAutoShootIntake_10_23_2026 extends LinearOpMode {
 
 
 
@@ -102,11 +100,12 @@ public class FourPreloadAutoShootIntake_10_19_2026 extends LinearOpMode {
 
 
         move (-0.5, 0.5, 0.5, -0.5, 200); // strafes left a little bit
-        move (0.5, 0.5, 0.5, 0.5, 2350); // moves for to the front side of the mat to get to the hive
-        move (-0.5, 0.5, 0.5, -0.5, 900); // strafes left to get in line with hive to be ready to shoot pollen
-        launcher.setVelocity(1120); // sets the speed of the launcher
+        move (0.5, 0.5, 0.5, 0.5, 2450); // moves for to the front side of the mat to get to the hive
+        move (-0.5, 0.5, 0.5, -0.5, 700); // strafes left to get in line with hive to be ready to shoot pollen
+        launcher.setVelocity(1125); // sets the speed of the launcher
+        intake.setPower(1.0);
         ElapsedTime timer = new ElapsedTime();
-        while (opModeIsActive() && launcher.getVelocity() < 1100 && timer.seconds() < 5) { // makes sure that the code only runs when the Launcher velocity is above 1100 AND the timer is less than 5
+        while (opModeIsActive() && launcher.getVelocity() < 1120 && timer.seconds() < 5) { // makes sure that the code only runs when the Launcher velocity is above 1100 AND the timer is less than 5
             idle();
         }
         for (int shot = 0; shot < 4; shot++) { // Function to repeat 4 times
@@ -115,22 +114,24 @@ public class FourPreloadAutoShootIntake_10_19_2026 extends LinearOpMode {
             windmillServo.setPower(1);
             sleep(200); // Servo resets
             windmillServo.setPower(0);
-            sleep(700); // Waits
+            sleep(500); // Waits
         }
         launcher.setVelocity(0);
-        move (-0.3, -0.3, -0.3, -0.3, 40); // Moves backwards a tiny bit
-        move (0.4, 0, 0.4, 0, 1100); // turns to the right to get prepared to intake from the garden
+        intake.setPower(0);
+        move (-0.3, -0.3, -0.3, -0.3, 30); // Moves backwards a tiny bit
+        move (0.4, -0.4, 0.4, -0.4, 240); // turns to the right to get prepared to intake from the garden
+        move (-0.5, 0.5, 0.5, -0.5, 500);
         intake.setPower(1.0);
         leftIntakeServo.setPower(1.0);
         rightIntakeServo.setPower(-1.0);
-        move (0.3, 0.3, 0.3, 0.3, 1300); // starts moving forwards while intaking towards the garden
+        move (0.3, 0.3, 0.3, 0.3, 2500); // starts moving forwards while intaking towards the garden
         intake.setPower(0);
         leftIntakeServo.setPower(0);
         rightIntakeServo.setPower(0); // stops intake motors from moving
-        move(-0.5, -0.5, -0.5, -0.5, 100); // moves backwards
+        move(-0.5, -0.5, -0.5, -0.5, 30); // moves backwards
         move(0.7, -0.7, -0.7, 0.7, 1800); // strafes right to get back to base
-        move(-0.5,0.5,-0.5,0.5,1000); // turns to get in line
-        move(-0.4, -0.4, -0.4, -0.4, 300); // goes backwards
+        move(-0.5,0.5,-0.5,0.5,825); // turns to get in line
+        move(-0.4, -0.4, -0.4, -0.4, 150); // goes backwards
     }
 
 

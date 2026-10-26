@@ -39,7 +39,7 @@ public class SimpleAuto extends LinearOpMode {
 
         // Stop and wait 30 seconds
         setPower(0);
-        sleep(28000);
+        sleep(24000);
 
         // Drive backward for 1 second
         setPower(0.5);
