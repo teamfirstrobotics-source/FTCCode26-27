@@ -1,8 +1,5 @@
 package org.firstinspires.ftc.teamcode;
 
-
-
-
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.CRServo;
@@ -11,10 +8,8 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-
-
-@Autonomous(name = "Four Preload Auto W/ Intake")
-public class FourPreloadAutoWIntake extends LinearOpMode {
+@Autonomous(name = "Four Preload Auto W/ Intake 10/27/2026")
+public class FourPreloadAutoShootIntake_10_27_2026 extends LinearOpMode {
 
 
 
@@ -89,154 +84,46 @@ public class FourPreloadAutoWIntake extends LinearOpMode {
 
 
         for (DcMotor m : new DcMotor[]{leftFrontDrive, leftBackDrive, rightFrontDrive, rightBackDrive}) {
-            m.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+            m.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         }
 
+        // Writes these messages on the driver hub to tell us information
         telemetry.addLine("Ready");
+        telemetry.addLine("Launcher Velocity = " + launcher.getVelocity());
         telemetry.update();
+        // This is where the code for moving actually starts
         waitForStart();
 
-
-        move (-0.5, 0.5, 0.5, -0.5, 200);
-        move (0.5, 0.5, 0.5, 0.5, 2100);
-        sleep(500);
-        move (-0.5, 0.5, 0.5, -0.5, 440);
-        launcher.setVelocity(1100);
+        move(-0.2, -0.2, -0.2, -0.2, 40);
+        launcher.setVelocity(1150); // sets the speed of the launcher
+        intake.setPower(1.0);
         ElapsedTime timer = new ElapsedTime();
-        while (opModeIsActive() && launcher.getVelocity() < 1050 && timer.seconds() < 5) {
+        while (opModeIsActive() && launcher.getVelocity() < 1140 && timer.seconds() < 5) { // makes sure that the code only runs when the Launcher velocity is above 1100 AND the timer is less than 5
             idle();
         }
-        for (int shot = 0; shot < 4; shot++) {
+        for (int shot = 0; shot < 4; shot++) { // Function to repeat 4 times
             windmillServo.setPower(-1);
-            sleep(550);
+            sleep(700); // Servo feeds balls to shooter
             windmillServo.setPower(1);
-            sleep(100);
+            sleep(200); // Servo resets
             windmillServo.setPower(0);
-            sleep(700);
+            sleep(500); // Waits
         }
         launcher.setVelocity(0);
-        move (-0.5, -0.5, -0.5, -0.5, 200);
-        move (0.4, 0, 0.4, 0, 1300);
-
-
-
-
-
-
-       /*leftFrontDrive.setPower(-0.5); Not working
-       rightFrontDrive.setPower(0.5);
-       leftBackDrive.setPower(0.5);
-       rightBackDrive.setPower(-0.5);
-       sleep(700);
-       leftFrontDrive.setPower(0);
-       rightFrontDrive.setPower(0);
-       leftBackDrive.setPower(0);
-       rightBackDrive.setPower(0);
-       sleep(500);
-       leftFrontDrive.setPower(0.5);
-       rightFrontDrive.setPower(0.5);
-       leftBackDrive.setPower(0.5);
-       rightBackDrive.setPower(0.5);
-       sleep(2800);
-       leftFrontDrive.setPower(0);
-       rightFrontDrive.setPower(0);
-       leftBackDrive.setPower(0);
-       rightBackDrive.setPower(0);
-       sleep(500);
-       leftFrontDrive.setPower(-0.5);
-       rightFrontDrive.setPower(0.5);
-       leftBackDrive.setPower(0.5);
-       rightBackDrive.setPower(-0.5);
-       sleep(1300);
-       leftFrontDrive.setPower(0);
-       rightFrontDrive.setPower(0);
-       leftBackDrive.setPower(0);
-       rightBackDrive.setPower(0);
-       sleep(500);
-       launcher.setVelocity(1100);
-       ElapsedTime timer = new ElapsedTime();
-       while (opModeIsActive() && launcher.getVelocity() < 1050 && timer.seconds() < 3) {
-           idle();
-       }
-       for (int shot = 0; shot < 4; shot++) {
-           windmillServo.setPower(-1);
-           sleep(700);
-           windmillServo.setPower(0);
-         sleep(500);
-       }
-       launcher.setVelocity(0);
-
-
-
-
-       //telemetry.addLine("Done");
-       leftFrontDrive.setPower(0.5);
-       rightFrontDrive.setPower(0);
-       leftBackDrive.setPower(0.5);
-       rightBackDrive.setPower(0);
-       sleep(1200);
-       leftFrontDrive.setPower(0);
-       rightFrontDrive.setPower(0);
-       leftBackDrive.setPower(0);
-       rightBackDrive.setPower(0);
-       sleep(500);
-       intake.setPower(1);
-       leftIntakeServo.setPower(1);
-       rightIntakeServo.setPower(1); Not working
-       leftFrontDrive.setPower(0.3);
-       rightFrontDrive.setPower(0.3);
-       leftBackDrive.setPower(0.3);
-       rightBackDrive.setPower(0.3);
-       sleep(1500);
-       intake.setPower(0);
-       leftIntakeServo.setPower(0);
-       rightIntakeServo.setPower(0);
-       leftFrontDrive.setPower(0);
-       rightFrontDrive.setPower(0);
-       leftBackDrive.setPower(0);
-       rightBackDrive.setPower(0);
-       sleep(500);
-       leftFrontDrive.setPower(-0.5);
-       rightFrontDrive.setPower(-0.5);
-       leftBackDrive.setPower(-0.5);
-       rightBackDrive.setPower(-0.5);
-       sleep(550);
-       leftFrontDrive.setPower(0);
-       rightFrontDrive.setPower(0);
-       leftBackDrive.setPower(0);
-       rightBackDrive.setPower(0);
-       sleep(500);
-       leftFrontDrive.setPower(0.5);
-       rightFrontDrive.setPower(-0.5);
-       leftBackDrive.setPower(-0.5);
-       rightBackDrive.setPower(0.5);
-       sleep(2300);
-       leftFrontDrive.setPower(0);
-       rightFrontDrive.setPower(0);
-       leftBackDrive.setPower(0);
-       rightBackDrive.setPower(0);
-       sleep(500);
-       leftFrontDrive.setPower(-0.5);
-       rightFrontDrive.setPower(0.5);
-       leftBackDrive.setPower(-0.5);
-       rightBackDrive.setPower(0.5);
-       sleep(1800);
-       leftFrontDrive.setPower(0);
-       rightFrontDrive.setPower(0);
-       leftBackDrive.setPower(0);
-       rightBackDrive.setPower(0);
-       sleep(500);
-       leftFrontDrive.setPower(-0.5);
-       rightFrontDrive.setPower(-0.5);
-       leftBackDrive.setPower(-0.5);
-       rightBackDrive.setPower(-0.5);
-       sleep(800);
-       leftFrontDrive.setPower(0);
-       rightFrontDrive.setPower(0);
-       leftBackDrive.setPower(0);
-       rightBackDrive.setPower(0); Not Working
-       sleep(500);
-*/
+        intake.setPower(0);
+        move (0.4, -0.4, 0.4, -0.4, 240); // turns to the right to get prepared to intake from the garden
+        move (-0.5, 0.5, 0.5, -0.5, 500);
+        intake.setPower(1.0);
+        leftIntakeServo.setPower(1.0);
+        rightIntakeServo.setPower(-1.0);
+        move (0.3, 0.3, 0.3, 0.3, 2900); // starts moving forwards while intaking towards the garden
+        intake.setPower(0);
+        leftIntakeServo.setPower(0);
+        rightIntakeServo.setPower(0); // stops intake motors from moving
+        move(-0.5, -0.5, -0.5, -0.5, 30); // moves backwards
+        move(0.7, -0.7, -0.7, 0.7, 1800); // strafes right to get back to base
+        move(-0.5,0.5,-0.5,0.5,825); // turns to get in line
+        move(-0.4, -0.4, -0.4, -0.4, 100); // goes backwards
     }
 
 
@@ -296,5 +183,6 @@ public class FourPreloadAutoWIntake extends LinearOpMode {
         sleep(2000);
     }
 }
+
 
 
