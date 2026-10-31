@@ -272,6 +272,6 @@ public class FourPreloadAutoShootIntake_10_28_2026 extends LinearOpMode {
         move(-0.5, -0.5, -0.5, -0.5, 30); // moves backwards
         move(0.7, -0.7, -0.7, 0.7, 1800); // strafes right to get back to base
         move(-0.5, 0.5, -0.5, 0.5, 825);  // turns to get in line
-        move(-0.4, -0.4, -0.4, -0.4, 35); // goes backwards
+        move(-0.4, -0.4, -0.4, -0.4, 23); // goes backwards
     }
 }
