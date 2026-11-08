@@ -93,4 +93,4 @@ class SpinMotor extends TuningOpMode<Void> {
         motor.setPower(0);
         return null;
     }
-}
+}//
